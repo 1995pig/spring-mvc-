@@ -1,0 +1,16 @@
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\vo\Item.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\dao\abs\AbstractDAO.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\dao\impl\ItemDAOImpl.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\dao\impl\SubitemDAOImpl.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\service\ISubitemService.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\vo\Subitem.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\service\IGoodsService.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\service\abs\AbstractService.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\dao\ISubitemDAO.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\dao\IGoodsDAO.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\service\impl\GoodsServiceImpl.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\service\impl\SubitemServiceImpl.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\dao\impl\GoodsDAOImpl.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\vo\Goods.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\goods\dao\IItemDAO.java
+E:\Eplipse\myspring-mvc 商品信息管理\goods\goods-service\src\main\java\cn\mldn\util\IBaseDAO.java

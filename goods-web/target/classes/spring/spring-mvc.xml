@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<context:component-scan base-package="cn.mldn.goods"/>
+ 	<!-- 启用Annotation注解模式来进行SpringMVC的配置 -->
+	<mvc:annotation-driven/>
+	<!-- 表示启用Servlet来处理请求 -->
+	<mvc:default-servlet-handler/>
+	<!-- 定义一个可以进行WEB_INF下页面的访问处理的信息配置,在Action中访问jsp页面省去前缀和后缀 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	<!-- 进行静态资源是映射访问-->		
+ 	<mvc:resources location="/WEB-INF/js/" mapping="/js/**"/>
+ 	<mvc:resources location="/WEB-INF/bootstrap/" mapping="/bootstrap/**"/>
+ 	<mvc:resources location="/WEB-INF/jquery/" mapping="/jquery/**"/>
+ 	<mvc:resources location="/WEB-INF/upload/" mapping="/upload/**"/>
+ 	
+ 	<!-- 进行资源文件的读取操作配置 -->
+ 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+ 		<property name="basenames">	<!-- 所有资源文件的名称 -->
+ 			<array>
+ 				<value>cn.mldn.message.pages</value>
+ 				<value>cn.mldn.message.messages</value>
+ 				<value>cn.mldn.message.validations</value>
+ 			</array>
+ 		</property>
+ 	</bean>
+ 	  
+ 		<!-- 进行上传的bean的配置 -->
+ 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+ 		<!-- 定义上传文件的大小控制 -->
+		<property name="maxUploadSize" value="4096000"/>
+		<!-- 每一次上传文件可以占用的内存大小 -->
+		<property name="maxInMemorySize" value="4096000"/>
+	</bean>
+	<!-- 上传出错,图片太大不能传，配置一个上传错误的跳转页面路径。这个操作就是捕获异常 -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<!-- 针对每一个异常进行跳转的映射操作 -->
+		<property name="exceptionMappings">
+			<props>
+				<!-- 超过了上传大小限制的错误页面，此时依然可以使用InternalResourceViewResolver类配置 -->
+				<!-- InternalResourceViewResolver上面已经配置，就是省略jsp页面的前缀和后缀 -->
+				<prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">
+					errors	<!-- 表示返回/WEB-INF/pages/error.jsp页面，已省略前缀和后缀 -->
+				</prop>
+			</props>
+		</property> 
+	</bean>
+ 
+	<!-- 配置项目之中所需要使用的拦截器程序类 -->
+	<mvc:interceptors>	<!-- 此处可以配置多个拦截器 -->
+		<mvc:interceptor>	<!-- 配置一个拦截器 -->
+			<mvc:mapping path="/pages/**/*.action"/>
+			<bean class="cn.mldn.util.web.interceptor.ValidationInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+
+</beans>

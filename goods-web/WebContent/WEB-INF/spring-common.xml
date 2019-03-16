@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	<context:component-scan base-package="cn.mldn.goods"/>
+	<!-- 所有的核心的连接信息配文件都保存在database.properties文件里面 -->
+	<context:property-placeholder location="classpath:config/database.properties"/>
+	<!-- 数据库连接池 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+ 		<property name="driverClass" value="${db.driverClass}"/> <!-- 定义数据库连接的驱动程序 -->
+ 		<property name="jdbcUrl" value="${db.jdbcUrl}"/> <!-- 数据库连接地址 --> 
+		<property name="user" value="${db.user}"/> <!-- 数据库连接用户名 -->
+  		<property name="password" value="${db.password}"/> <!-- 数据库连接密码 --> 
+ 		<property name="maxPoolSize" value="${db.maxPoolSize}"/> <!-- 最大连接数 -->
+ 		<property name="minPoolSize" value="${db.minPoolSize}"/> <!-- 最小连接池 -->
+ 		<property name="initialPoolSize" value="${db.initialPoolSize}"/> <!-- 初始化连接大小 --> 
+ 		<property name="maxIdleTime" value="${db.maxIdleTime}"/> <!-- 最大等待时间 -->
+	</bean> 
+  	<!-- 通过JdbcTemplate实现数据库的开发原理 -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+
+
+</beans>

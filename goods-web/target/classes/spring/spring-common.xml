@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:component-scan base-package="cn.mldn.goods"/> 
+	<context:property-placeholder location="classpath:config/*.properties"/>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"> 
+		<property name="driverClass" value="${db.driverClass}"/>	<!-- 数据库的连接驱动程序 -->
+		<property name="jdbcUrl" value="${db.jdbcUrl}"/>	<!-- 数据库的连接地址信息 -->
+		<property name="user" value="${db.user}"/>	<!-- 数据库的连接用户名 -->
+		<property name="password" value="${db.password}"/>	<!-- 连接密码 -->
+		<property name="maxPoolSize" value="${db.maxPoolSize}"/>	<!-- 最大的连接池供给的连接数量 -->
+		<property name="minPoolSize" value="${db.minPoolSize}"/>	<!-- 最小维持连接数量 -->
+		<property name="initialPoolSize" value="${db.initialPoolSize}"/>	<!-- 数据库连接池初始化大小 -->
+		<property name="maxIdleTime" value="${db.maxIdleTime}"/>	<!-- 用户最大等待时间 -->
+	</bean>
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean> 
+</beans>
